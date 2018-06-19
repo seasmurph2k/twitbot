@@ -1,0 +1,35 @@
+{
+  "name": "twitbot",
+  "version": "0.0.1",
+  "description": "A Basic twitter bot",
+  "main": "app.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "mongodb": "^3.0.10",
+    "morgan": "^1.9.0",
+    "twit": "^2.2.10"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon bin/www"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/seasmurph2k/twitbot.git"
+  },
+  "keywords": [
+    "tweet",
+    "schedule"
+  ],
+  "author": "Connor Murphy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/seasmurph2k/twitbot/issues"
+  },
+  "homepage": "https://github.com/seasmurph2k/twitbot#readme"
+}
