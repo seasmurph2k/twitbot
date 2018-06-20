@@ -1,0 +1,124 @@
+/*primary #141d26 */
+*{
+    padding:0px 0px;
+    margin: 0px 0px;
+    box-sizing: content-box;
+}
+html{
+    background-color:#141d26;
+    color:#fff;
+    font-size:1.2em;
+}
+
+header{
+    padding:.375em;
+}
+
+.container{
+    display: flex;
+    width:100%;
+    height:90vh;
+}
+.sidebar{
+    width:15%;
+    height:40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid black;
+    background-color:#1b2836;
+    margin-left:.125em;
+}
+.list{
+    padding-top:.5em;
+}
+.list li{
+    padding:.2em 0;
+}
+.main{
+    width:100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left:5%;
+}
+.tweet{
+    background-color:#1b3448;
+    height:130px;
+    width:450px;
+    border-radius:.375em;
+    border:1px solid #1c88cc;
+    margin-left: 2.75em;
+}
+.tweet-area{
+    background-color:#141d26;
+    margin:.5em;
+    border-radius:.375em;
+    border:1px solid #1c88cc;
+    color:white;
+    resize: none;
+    font-size:1em;
+    padding:.125em;
+}
+.tweet-btn{
+    height:1.8em;
+    width:5em;
+    margin-left:83%;
+    border-radius: .375em;
+    background-color:#1c88cc;
+    border:1px solid #1c88cc;
+    font-weight: bold;
+    font-size: .8em;
+}
+.h2-margin{
+    margin-top:.4em;
+    margi1n:0.2em 0;
+}
+hr{
+    width:50%;
+    margin-bottom: .2em;
+}
+.tweet-wrapper{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+/*
+
+*/
+.tweets{
+    background-color:#1b3448;
+    height:130px;
+    width:475px;
+    border-radius:.375em;
+    border:1px solid #1c88cc;
+    margin:.375em 0;
+    font-size:.9em;
+}
+.tweet-container{
+    display: flex;
+    align-items: center;
+    padding-top:.375em;
+}
+.tweet-container img{
+    width:20%;
+    height: 80%;
+    border-radius: 50%;
+    margin-left: .2em;
+}
+.tweet-container p{
+    width:80%;
+    padding-left: 1em;
+}
+.tweet-container + small{
+    float: right;
+    margin-right: .375em;
+}
+a{
+    color:#1da1d4;
+    text-decoration: none;
+}
+img{
+    width:100%;
+    height:auto;
+}
