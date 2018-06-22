@@ -20,115 +20,29 @@
                     <form method="POST" id="tweet">
                         <textarea id="tweet-text" name="tweetText" form="tweet" class="tweet-area" maxlength="140" placeholder="Your tweet" rows="4"
                             cols="45"></textarea>
-                        <input class="tweet-btn" type="submit" value="Tweet">
+                        <input class="btn tweet-btn" type="submit" value="Tweet">
                     </form>
                 </div>
                 <h2 class="h2-margin">Last 10 tweets:</h2>
                 <hr>
                 <div class="tweet-wrapper">
-                    <div class="tweets">
-                        <div class="tweet-container">
-                            <img src="imgs/profile.jpg" alt="profile picture">
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer in lacus neque. In mattis ligula felis, non consectetur
-                                dui sodales nullam.
-                            </p>
-                        </div>
-                        <small>Date 09/08/2018</small>
-                    </div>
-                    <div class="tweets">
-                        <div class="tweet-container">
-                            <img src="imgs/profile.jpg" alt="profile picture">
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer in lacus neque. In mattis ligula felis, non consectetur
-                                dui sodales nullam.
-                            </p>
-                        </div>
-                        <small>Date 09/08/2018</small>
-                    </div>
-                    <div class="tweets">
-                        <div class="tweet-container">
-                            <img src="imgs/profile.jpg" alt="profile picture">
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer in lacus neque. In mattis ligula felis, non consectetur
-                                dui sodales nullam.
-                            </p>
-                        </div>
-                        <small>Date 09/08/2018</small>
-                    </div>
-                    <div class="tweets">
-                        <div class="tweet-container">
-                            <img src="imgs/profile.jpg" alt="profile picture">
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer in lacus neque. In mattis ligula felis, non consectetur
-                                dui sodales nullam.
-                            </p>
-                        </div>
-                        <small>Date 09/08/2018</small>
-                    </div>
-                    <div class="tweets">
-                        <div class="tweet-container">
-                            <img src="imgs/profile.jpg" alt="profile picture">
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer in lacus neque. In mattis ligula felis, non consectetur
-                                dui sodales nullam.
-                            </p>
-                        </div>
-                        <small>Date 09/08/2018</small>
-                    </div>
-                    <div class="tweets">
-                        <div class="tweet-container">
-                            <img src="imgs/profile.jpg" alt="profile picture">
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer in lacus neque. In mattis ligula felis, non consectetur
-                                dui sodales nullam.
-                            </p>
-                        </div>
-                        <small>Date 09/08/2018</small>
-                    </div>
-                    <div class="tweets">
-                        <div class="tweet-container">
-                            <img src="imgs/profile.jpg" alt="profile picture">
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer in lacus neque. In mattis ligula felis, non consectetur
-                                dui sodales nullam.
-                            </p>
-                        </div>
-                        <small>Date 09/08/2018</small>
-                    </div>
-                    <div class="tweets">
-                        <div class="tweet-container">
-                            <img src="imgs/profile.jpg" alt="profile picture">
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer in lacus neque. In mattis ligula felis, non consectetur
-                                dui sodales nullam.
-                            </p>
-                        </div>
-                        <small>Date 09/08/2018</small>
-                    </div>
-                    <div class="tweets">
-                        <div class="tweet-container">
-                            <img src="imgs/profile.jpg" alt="profile picture">
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer in lacus neque. In mattis ligula felis, non consectetur
-                                dui sodales nullam.
-                            </p>
-                        </div>
-                        <small>Date 09/08/2018</small>
-                    </div>
-                    <div class="tweets">
-                        <div class="tweet-container">
-                            <img src="imgs/profile.jpg" alt="profile picture">
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer in lacus neque. In mattis ligula felis, non consectetur
-                                dui sodales nullam.
-                            </p>
-                        </div>
-                        <small>Date 09/08/2018</small>
-                    </div>
+                    <% if(tweets){%>
+                        <% for(let i = 0; i < tweets.length; i++){%>
+                            <div class="tweets">
+                                <div class="tweet-container">
+                                    <img src="imgs/profile.jpg" alt="profile picture">
+                                    <p>
+                                        <%= tweets[i].text %>
+                                    </p>
+                                </div>
+                                <small>
+                                    <%= tweets[i].date %>
+                                </small>
+                            </div>
+                            <%}%>
+                                <%}%>
                 </div>
             </main>
     </div>
 </body>
-
 </html>
