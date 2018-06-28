@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const logger = require('morgan');
 const path = require('path')
+const expressMongoDb = require('express-mongo-db')
 
 //routes
 const index = require('./routes/index');
@@ -15,6 +16,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(expressMongoDb('mongodb://localhost:27017/twitbot'))
 
 //map routes
 app.use('/', index);
