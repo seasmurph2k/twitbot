@@ -20,57 +20,72 @@
                     <h2 class="h2-margin">Schedule</h2>
                     <div class="tweet">
                         <form id="schedule-tweet" action="/schedule" method="POST">
-                            <textarea id="tweet-text" name="tweetText" form="schedule-tweet" class="tweet-area" maxlength="140" placeholder="Your tweet" rows="4"
-                            cols="45"></textarea>
+                            <textarea id="tweet-text" name="tweetText" form="schedule-tweet" class="tweet-area" maxlength="140" placeholder="Your tweet"
+                                rows="4" cols="45"></textarea>
                             <div class="flexi">
-                                <input id="date" class="input-style" type="date"
-                                name="date" step="1" >
-                                <input id="time" class="input-style" type="time"
-                                name="time">
+                                <input id="date" class="input-style" type="date" name="date" step="1">
+                                <input id="time" class="input-style" type="time" name="time">
                                 <input class="btn" type="submit" value="Schedule">
                             </div>
                         </form>
                     </div>
                     <h2 class="h2-margin">Upcoming tweets:</h2>
                     <div class="tweet-wrapper">
-                    <% if(tweets){%>
-                        <% for(let i = 0; i < tweets.length; i++){%>
-                            <div class="tweets">
-                                <div class="tweet-container">
-                                    <img src="imgs/profile.jpg" alt="profile picture">
-                                    <p>
-                                        <%= tweets[i].tweet %>
-                                    </p>
-                                    <span onclick="del()" class="options">
-                                        
-                                    </span>
+                        <% if(tweets){%>
+                            <% for(let i = 0; i < tweets.length; i++){%>
+                                <div class="tweets">
+                                    <div class="tweet-container">
+                                        <img src="imgs/profile.jpg" alt="profile picture">
+                                        <p>
+                                            <%= tweets[i].tweet %>
+                                        </p>
+                                        <span onclick="del(this.id)" class="options" id="<%= tweets[i].id%>">
+
+                                        </span>
+                                    </div>
+
+                                    <small>
+                                        When:
+                                        <%= tweets[i].when %>
+                                    </small>
                                 </div>
-                                
-                                <small>
-                                  When:   <%= tweets[i].when %>
-                                </small>
-                            </div>
-                            <%}%>
                                 <%}%>
-                  </div>
+                                    <%}%>
+                    </div>
+                    </div>
             </main>
-    </div>
+        </div>
 </body>
 <script>
-    let date = new Date().toISOString().substr(0,10);
+    let date = new Date().toISOString().substr(0, 10);
     document.getElementById('date').value = date;
 
     let temp = new Date();
     let hours = temp.getHours();
-    if(hours < 9){
+    if (hours < 9) {
         zero = '0' + hours;
         hours = zero;
     }
 
     let minutes = temp.getMinutes();
     minutes += 5;
-    
+
     let time = hours + ":" + minutes
     document.getElementById('time').value = time;
+    
+    function del(tweetID) {
+        fetch('/removescheduledtweet', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ id: tweetID })
+        }).then((res) => {
+            window.location.reload(true)
+        }).catch((e) => {
+            console.log(e)
+        })
+    }
 </script>
+
 </html>

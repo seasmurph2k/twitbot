@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const twitterLib = require("../lib/twitter");
+const mongodb = require("mongodb");
 
 router.get("/", twitterLib.getLastTweets, (req, res, next) => {
   res.render("index", {
@@ -25,6 +26,7 @@ router.get("/schedule", (req, res, next) => {
             for(let i = 0; i < docs.length; i++){
                 if(docs[i].nextRunAt){
                     let tmp = {
+                        'id': docs[i]._id,
                         'tweet' : docs[i].data.tweet,
                         'when' : docs[i].nextRunAt.toString().substr(0,21)
                     }
@@ -55,5 +57,20 @@ router.post("/schedule", (req, res, next) => {
     );
     res.redirect('/schedule');
 });
+
+router.post('/removescheduledtweet', (req,res)=>{
+    let tweetToRemove = req.body.id;
+    req.db.collection('scheduledTweets').deleteOne({
+        '_id': mongodb.ObjectId(tweetToRemove)
+    }, (err,result)=>{
+        if(err){
+            console.log('err ' + err);
+            res.status(500).send(err)
+        }
+        else{
+            res.status(200).send('Tweet deleted')
+        }
+    })
+})
 
 module.exports = router;
