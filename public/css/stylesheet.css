@@ -12,28 +12,23 @@ html{
 
 header{
     padding:.375em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav ul{
+    margin-right:2.5em;
+}
+nav ul li{
+    display: inline;
+    font-size:1.2em;
 }
 
 .container{
     display: flex;
     width:100%;
     height:90vh;
-}
-.sidebar{
-    width:15%;
-    height:40%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border: 1px solid black;
-    background-color:#1b2836;
-    margin-left:.125em;
-}
-.list{
-    padding-top:.5em;
-}
-.list li{
-    padding:.2em 0;
 }
 .main{
     width:100%;
@@ -76,7 +71,6 @@ header{
 
 .h2-margin{
     margin-top:.4em;
-    margi1n:0.2em 0;
 }
 hr{
     width:50%;
@@ -151,7 +145,6 @@ hr{
     height:20vh;
     background-color:#020;
     position: absolute;
-    ma1rgin-top: 25%;
     margin-left: 20%;
     text-align: center;
 }
