@@ -4,9 +4,9 @@ const twitterLib = require("../lib/twitter");
 const mongodb = require("mongodb");
 
 router.get("/", twitterLib.getLastTweets, (req, res, next) => {
-  res.render("index", {
-    tweets: res.locals.tweets
-  });
+    res.render("index", {
+        tweets: res.locals.tweets
+    });
 });
 
 router.post("/", twitterLib.tweet, (req, res, next) => {

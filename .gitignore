@@ -61,4 +61,3 @@ typings/
 .next
 
 #api keys
-lib/credentials.env
