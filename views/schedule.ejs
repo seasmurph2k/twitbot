@@ -1,92 +1,135 @@
-<!DOCtype html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>TwitBot</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="css/stylesheet.css" />
 
-    <link rel="stylesheet" href="css/stylesheet.css">
 </head>
 
 <body>
-    <header>
-        <h1>Twit bot</h1>
-        <%- include partials/navigation %>
-
+    <header class="header">
+        <div>
+            <div class="hamburger">
+                <span id="showMenu">|||</span>
+            </div>
+            <h1>Twitbot</h1>
+        </div>
+        <div class="div">
+            <label for="">Account:</label>
+            <select>
+                <optgroup>
+                    <option>Default</option>
+                    <option>Project X</option>
+                    <option>Project Y</option>
+                    <option>Project Z</option>
+                </optgroup>
+            </select>
+        </div>
     </header>
     <div class="container">
-            <main class="main">
-                <div class="schedule">
-                    <h2 class="h2-margin">Schedule</h2>
-                    <div class="tweet">
-                        <form id="schedule-tweet" action="/schedule" method="POST">
-                            <textarea id="tweet-text" name="tweetText" form="schedule-tweet" class="tweet-area" maxlength="140" placeholder="Your tweet"
-                                rows="4" cols="45"></textarea>
-                            <div class="flexi">
-                                <input id="date" class="input-style" type="date" name="date" step="1">
-                                <input id="time" class="input-style" type="time" name="time">
-                                <input class="btn" type="submit" value="Schedule">
-                            </div>
-                        </form>
+        <aside id="sidebar" class="hide">
+            <nav>
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="/Schedule" class="nav-link">Schedule</a></li>
+                    <li class="nav-item"><a href="" class="nav-link">Analyitics</a></li>
+                    <li class="nav-item"><a href="" class="nav-link">Feed</a></li>
+                    <li class="nav-item"><a href="" class="nav-link">Follower</a></li>
+                    <li class="nav-item"><a href="" class="nav-link">Unfollower</a></li>
+                </ul>
+            </nav>
+        </aside>
+        <main>
+            <div class="tweet-form" id="schedule">
+                <form id="schedule-tweet" action="/schedule" class="form" method="POST">
+                    <textarea name="tweetText" id="tweet-text" cols="30" rows="4" form="schedule-tweet" maxlength="140"
+                        placeholder="140 characters or less to change the world"></textarea>
+                    <div class="form-group">
+                        <input type="date" name="date" id="date">
+                        <input type="time" name="time" id="time">
+                        <input type="file" name="" id="" value="attach media">
+                        <button class="btn" type="submit">Schedule</button>
                     </div>
-                    <h2 class="h2-margin">Upcoming tweets:</h2>
-                    <div class="tweet-wrapper">
-                        <% if(tweets){%>
-                            <% for(let i = 0; i < tweets.length; i++){%>
-                                <div class="tweets">
-                                    <div class="tweet-container">
-                                        <img src="imgs/profile.jpg" alt="profile picture">
-                                        <p>
-                                            <%= tweets[i].tweet %>
-                                        </p>
-                                        <span onclick="del(this.id)" class="options" id="<%= tweets[i].id%>">
+                </form>
+            </div>
+            <hr>
+            <div class="tweet-container">
 
-                                        </span>
-                                    </div>
+                <% if(tweets){%>
+                <% for(let i = 0; i < tweets.length; i++){%>
+                <div class="tweet">
+                    <span onclick="del(this.id)" class="delete-tweet" id="<%= tweets[i].id%>">
 
-                                    <small>
-                                        When:
-                                        <%= tweets[i].when %>
-                                    </small>
-                                </div>
-                                <%}%>
-                                    <%}%>
+                    </span>
+                    <div>
+
+                        <img src="imgs/profile.jpg" alt="profile picture">
+                        <p class="tweet-text">
+                            <%= tweets[i].tweet %>
+                        </p>
                     </div>
-                    </div>
-            </main>
-        </div>
+
+                    <small class="tweet-date">
+                        When:
+                        <%= tweets[i].when %>
+                    </small>
+                </div>
+                <%}%>
+                <%}%>
+            </div>
+        </main>
+    </div>
+    <script>
+        const dropdown = document.getElementById('showMenu');
+        const sidebar = document.getElementById('sidebar');
+        const hamburger = document.getElementsByClassName('hamburger')
+        dropdown.onclick = () => {
+            if (sidebar.classList.contains('hide')) {
+                sidebar.classList.remove('hide')
+                hamburger[0].classList.add('rotate')
+
+            }
+            else {
+                sidebar.classList.add('hide');
+                hamburger[0].classList.remove('rotate')
+            }
+        }
+    </script>
+    <script>
+        let date = new Date().toISOString().substr(0, 10);
+        document.getElementById('date').value = date;
+
+        let temp = new Date();
+        let hours = temp.getHours();
+        if (hours < 9) {
+            zero = '0' + hours;
+            hours = zero;
+        }
+
+        let minutes = temp.getMinutes();
+        minutes += 5;
+
+        let time = hours + ":" + minutes
+        document.getElementById('time').value = time;
+
+        function del(tweetID) {
+            fetch('/removescheduledtweet', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ id: tweetID })
+            }).then((res) => {
+                window.location.reload(true)
+            }).catch((e) => {
+                console.log(e)
+            })
+        }
+    </script>
 </body>
-<script>
-    let date = new Date().toISOString().substr(0, 10);
-    document.getElementById('date').value = date;
-
-    let temp = new Date();
-    let hours = temp.getHours();
-    if (hours < 9) {
-        zero = '0' + hours;
-        hours = zero;
-    }
-
-    let minutes = temp.getMinutes();
-    minutes += 5;
-
-    let time = hours + ":" + minutes
-    document.getElementById('time').value = time;
-    
-    function del(tweetID) {
-        fetch('/removescheduledtweet', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ id: tweetID })
-        }).then((res) => {
-            window.location.reload(true)
-        }).catch((e) => {
-            console.log(e)
-        })
-    }
-</script>
 
 </html>
