@@ -32,7 +32,7 @@ Note: DB Connection string is in lib/twitter.js
 
 ### Screens:
 #### Home Page:
-![alt text](https://i.imgur.com/3yekMF6.png "Home Page")
+![alt text](https://i.imgur.com/b5VqGYK.png "Home Page")
 
 #### Schedule Page:
-![alt text](https://i.imgur.com/L1zJ6WX.png "Schedule Page")
+![alt text](https://i.imgur.com/NoFi7LX.png "Schedule Page")
